@@ -1,8 +1,15 @@
+<header class="friendlist-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<h2>Select a partner for your trip</h2>
+			</div>
+		</div>
+	</div>
+</header>
 <ul class="row-fluid friendlist">
 
-    <li ng-repeat="friend in friends"
-        class="ui-card col-xs-12 col-lg-3">
-
+    <li ng-repeat="friend in friends" class="ui-card ui-card-list-element col-xs-12">
         <a href="#" class="action">invite</a>
         <img class="icon" src="images/icon1.jpg" />
         <h1>{{ friend.first_name }} {{ friend.second_name }}</h1>

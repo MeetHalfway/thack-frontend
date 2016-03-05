@@ -1,7 +1,7 @@
 angular.module("app.templates", []).run(["$templateCache", function($templateCache) {$templateCache.put("templates/index","null");
 $templateCache.put("templates/search","null");
-$templateCache.put("templates/index/index.html","<div ui-view=\"search\"></div>\n");
-$templateCache.put("templates/search/search.html","<section class=\"search wrapper\">\n</section>\n\n\n");}]);
+$templateCache.put("templates/index/index.html","<div ui-view=\"search\"></div>\r\n<div class=\"row friendlist\">\r\n    <div class=\"ui-card col-xs-12 col-lg-3\">\r\n        <h1>Name</h1>\r\n        <p>Location</p>\r\n    </div>\r\n    <div class=\"ui-card col-xs-12 col-lg-3\">\r\n        <h1>Name</h1>\r\n        <p>Location</p>\r\n    </div>\r\n</div>\r\n<input ng-model=\'twoway\' class=\"form-control\">\r\n<div>\r\n    {{ twoway }}\r\n</div>\r\n\r\n<p>Nothing here {{\'yet\' + \'!\'}}</p>\r\n<div ng-repeat=\"phone in phones\">\r\n    phones {{ phone.name }}\r\n</div>");
+$templateCache.put("templates/search/search.html","<section class=\"search wrapper\">\r\n</section>\r\n\r\n\r\n");}]);
 /**
 * This module contains shared directive, filter, and service across the App
 */

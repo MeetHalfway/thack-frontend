@@ -53,10 +53,14 @@ gulp.task('styles', function() {
   ])
   .pipe(gulp.dest("build/fonts"));
 
+  // uncomment this part to include vendor css
+  /**
   gulp.src([
-    'bower_components/animate.css/animate.min.css'
+    'bower_components/...'
   ])
+  .pipe(concat('vendor.css'))
   .pipe(gulp.dest("build/styles"));
+  */
 
   return gulp.src([
     'styles/*.scss'

@@ -1,14 +1,13 @@
-<div ui-view="search"></div>
+<div id="intro">
+    <div class="intext">
+        <h1>Welcome to Halfway!</h1>
+        <h2>Plan and book trips with friends living in a different city.</h2>
+    </div>
 
-<input ng-model='twoway' class="form-control">
-<div>
-    {{ twoway }}
+    <div class="pulldown">
+        <a ui-sref="search" type="button" class="btn btn-primary btn-lg"><i class="fa fa-facebook"></i> Login with Facebook</a>
+        <p>We use your name, picture, city and the friend list to personalize the experience</p>
+    </div>
 </div>
 
-<a ui-sref="state1">State 1</a>
 <a ui-sref="state2">State 2</a>
-
-<p>Nothing here {{'yet' + '!'}}</p>
-<div ng-repeat="phone in phones">
-    phones {{ phone.name }}
-</div>

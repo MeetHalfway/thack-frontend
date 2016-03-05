@@ -7,6 +7,8 @@
       'app.common',
       'app.core',
       'app.index',
+      'app.search',
+      'app.booking',
       'app.templates'
     ])
     .value('googleApiKey', '....')

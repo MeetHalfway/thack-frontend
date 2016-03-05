@@ -1,44 +1,11 @@
-<div class="row-fluid friendlist">
-    <div class="ui-card col-xs-12 col-lg-3">
+<ul class="row-fluid friendlist">
+
+    <li ng-repeat="friend in friends"
+        class="ui-card col-xs-12 col-lg-3">
+
         <a href="#" class="action">invite</a>
         <img class="icon" src="images/icon1.jpg" />
-        <h1>Alex Aaron</h1>
+        <h1>{{ friend.first_name }} {{ friend.second_name }}</h1>
         <p><i class="fa fa-map-marker"></i> Berlin | 0 trips together</p>
-    </div>
-    <div class="ui-card col-xs-12 col-lg-3">
-        <a href="#" class="action">invite</a>
-        <img class="icon" src="images/icon2.jpg" />
-        <h1>Name</h1>
-        <p><i class="fa fa-map-marker"></i> Berlin | Location</p>
-    </div>
-    <div class="ui-card col-xs-12 col-lg-3">
-        <a href="#" class="action">invite</a>
-        <img class="icon" src="images/icon3.jpg" />
-        <h1>Name</h1>
-        <p><i class="fa fa-map-marker"></i> Berlin | Location</p>
-    </div>
-    <div class="ui-card col-xs-12 col-lg-3">
-        <a href="#" class="action">invite</a>
-        <img class="icon" src="images/icon4.jpg" />
-        <h1>Name</h1>
-        <p><i class="fa fa-map-marker"></i> Berlin | Location</p>
-    </div>
-    <div class="ui-card col-xs-12 col-lg-3">
-        <a href="#" class="action">invite</a>
-        <img class="icon" src="images/icon5.jpg" />
-        <h1>Name</h1>
-        <p><i class="fa fa-map-marker"></i> Berlin | Location</p>
-    </div>
-    <div class="ui-card col-xs-12 col-lg-3">
-        <a href="#" class="action">invite</a>
-        <img class="icon" src="images/icon6.jpg" />
-        <h1>Name</h1>
-        <p><i class="fa fa-map-marker"></i> Berlin | Location</p>
-    </div>
-    <div class="ui-card col-xs-12 col-lg-3">
-        <a href="#" class="action">invite</a>
-        <img class="icon" src="images/icon1.jpg" />
-        <h1>Name</h1>
-        <p><i class="fa fa-map-marker"></i> Berlin | Location</p>
-    </div>
-</div>
+    </li>
+</ul>

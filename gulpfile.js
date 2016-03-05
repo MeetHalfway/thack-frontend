@@ -151,7 +151,7 @@ gulp.task('scripts', function() {
 // gulp task suite
 gulp.task('live', ['pre-process', 'styles', 'scripts', 'images', 'webserver'], function() {
   gulp.watch('index.html', ['pre-process']);
-  gulp.watch('styles/**/*.scss', ['styles']);
+  gulp.watch('styles/**/*.sass', ['styles']);
   gulp.watch(['templates/**/*.html', 'scripts/**/*.js'], ['scripts']);
 });
 

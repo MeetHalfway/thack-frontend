@@ -126,10 +126,8 @@ gulp.task('scripts', function() {
       standalone: true
     })),
     gulp.src([
-      'scripts/common/**/*.js',
-      'scripts/core/**/*.js',
-      'scripts/index/**/*.js',
-      'scripts/app.js'
+      'scripts/**/_*.js',
+      'scripts/**/*.js'
     ])
   )
   .pipe(plumber(plumberErrorHandler))

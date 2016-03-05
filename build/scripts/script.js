@@ -19,6 +19,132 @@ $templateCache.put("templates/search/search.html","<section class=\"search wrapp
 
 })();
 
+/**
+ * This module declares all third-party dependencies
+ */
+(function() {
+
+  'use strict';
+
+  angular
+    .module('app.core', [
+      'ui.router',
+      'ngAnimate',
+      'ngStorage',
+      'ngSanitize',
+      'ui.sortable'
+    ]);
+})();
+
+
+/*
+* This module contain global configuration.
+*/
+(function() {
+
+  'use strict';
+
+  angular
+    .module('app.index', [
+      'app.core'
+    ])
+    .run(run);
+
+  function run($rootScope) {
+    // do whatever
+  }
+  
+})();
+
+(function() {
+
+  'use strict';
+
+  angular
+    .module('app', [
+      'app.common',
+      'app.core',
+      'app.index',
+      'app.templates'
+    ])
+    .value('googleApiKey', '....')
+    .run(run);
+
+  function run(browser) {
+    if (browser.isMobileDevice()) {
+      FastClick.attach(document.body);
+    }
+  }
+
+})();
+
+
+(function() {
+
+  'use strict';
+
+  angular
+    .module('app.index')
+    .controller('indexCtrl', indexCtrl);
+
+  function indexCtrl($scope) {
+
+  }
+
+})();
+
+(function() {
+
+  'use strict';
+
+  angular
+    .module('app.index')
+    .config(routerConfig);
+
+  function routerConfig($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/');
+
+    /**
+    * Resolve global application-wide data at here
+    */
+    $stateProvider.state('root', {
+      abstract: true,
+      template: '<div ui-view></div>',
+      resolve: {
+        globalConfig: function() {
+          return {};
+        }
+      }
+    });
+
+    $stateProvider.state('index', {
+      url: '/',
+      parent: 'root',
+      views: {
+        '': {
+          templateUrl: 'templates/index/index.html',
+          controller: 'indexCtrl'
+        },
+        'search@index': {
+          templateUrl: 'templates/search/search.html',
+          controller: 'indexCtrl',
+          resolve: {
+            searchFormData: getDefaultData
+          }
+        }
+      }
+    });
+  }
+
+  function getDefaultData() {
+    return {
+      destination: null,
+      origin: null,
+	  date: null
+    }
+  }
+})();
+
 (function() {
   'use strict';
 
@@ -145,128 +271,3 @@ $templateCache.put("templates/search/search.html","<section class=\"search wrapp
 	};
 
 })();
-/**
- * This module declares all third-party dependencies
- */
-(function() {
-
-  'use strict';
-
-  angular
-    .module('app.core', [
-      'ui.router',
-      'ngAnimate',
-      'ngStorage',
-      'ngSanitize',
-      'ui.sortable'
-    ]);
-})();
-
-
-(function() {
-
-  'use strict';
-
-  angular
-    .module('app.index')
-    .controller('indexCtrl', indexCtrl);
-
-  function indexCtrl($scope) {
-
-  }
-
-})();
-
-(function() {
-
-  'use strict';
-
-  angular
-    .module('app.index')
-    .config(routerConfig);
-
-  function routerConfig($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/');
-
-    /**
-    * Resolve global application-wide data at here
-    */
-    $stateProvider.state('root', {
-      abstract: true,
-      template: '<div ui-view></div>',
-      resolve: {
-        globalConfig: function() {
-          return {};
-        }
-      }
-    });
-
-    $stateProvider.state('index', {
-      url: '/',
-      parent: 'root',
-      views: {
-        '': {
-          templateUrl: 'scripts/app/templates/index/index.html',
-          controller: 'indexCtrl'
-        },
-        'search@index': {
-          templateUrl: 'templates/search/search.html',
-          controller: 'searchCtrl',
-          resolve: {
-            searchFormData: getDefaultData
-          }
-        }
-      }
-    });
-  }
-
-  function getDefaultData() {
-    return {
-      destination: null,
-      origin: null,
-	  date: null
-    }
-  }
-})();
-
-/*
-* This module contain global configuration.
-*/
-(function() {
-
-  'use strict';
-
-  angular
-    .module('app.index', [
-      'app.core'
-    ])
-    .run(run);
-
-  function run($rootScope) {
-    // do whatever
-  }
-  
-})();
-
-(function() {
-
-  'use strict';
-
-  angular
-    .module('app', [
-      'app.common',
-      'app.core',
-      'app.index',
-      'app.templates'
-    ])
-    .value('googleApiKey', '....')
-    .run(run);
-
-  function run(browser) {
-    if (browser.isMobileDevice()) {
-      FastClick.attach(document.body);
-    }
-  }
-
-})();
-

@@ -22,23 +22,23 @@
             }
         });
 
-        //        $stateProvider.state('index', {
-        //            url: '/',
-        //            parent: 'root',
-        //            views: {
-        //                '': {
-        //                    templateUrl: 'templates/index/index.html',
-        //                    controller: 'indexCtrl'
-        //                },
-        //                'search@index': {
-        //                    templateUrl: 'templates/search/search.html',
-        //                    controller: 'indexCtrl',
-        //                    resolve: {
-        //                        searchFormData: getDefaultData
-        //                    }
-        //                }
-        //            }
-        //        });
+//        $stateProvider.state('index', {
+             //            url: '/index',
+             //            parent: 'root',
+             //            views: {
+             //                '': {
+             //                    templateUrl: 'templates/index/index.html',
+             //                    controller: 'indexCtrl'
+             //                },
+             //                'search@index': {
+             //                    templateUrl: 'templates/search/search.html',
+             //                    controller: 'indexCtrl',
+             //                    resolve: {
+             //                        searchFormData: getDefaultData
+             //                    }
+             //                }
+             //            }
+             //        });
 
         $stateProvider.state('intro', {
             url: '/',
@@ -56,7 +56,7 @@
             templateUrl: 'templates/intro/friendlist.html',
             controller: 'introCtrl',
             resolve: {
-                //users: loadUsers
+                //                users: loadUsers
             }
         });
 
@@ -79,5 +79,9 @@
             origin: null,
             date: null
         }
+    }
+
+    function getFriendlist() {
+        retur
     }
 })();

@@ -13,33 +13,13 @@
          * Resolve global application-wide data at here
          */
 
-        $stateProvider.state('intro', {
-            url: '/',
-            parent: 'root',
-            templateUrl: 'templates/intro/intro.html',
-            controller: 'introCtrl',
-            resolve: {
-                //users: loadUsers
-            }
-        });
-
         $stateProvider.state('search', {
-            url: '/list',
+            url: '/search',
             parent: 'root',
-            templateUrl: 'templates/intro/friendlist.html',
+            templateUrl: 'templates/search/search.html',
             controller: 'introCtrl',
             resolve: {
                 users: loadUsers
-            }
-        });
-
-        $stateProvider.state('state2', {
-            url: '/state2',
-            parent: 'root',
-            templateUrl: 'templates/intro/intro.html',
-            controller: 'introCtrl',
-            resolve: {
-                //users: loadUsers
             }
         });
 
@@ -55,6 +35,6 @@
     }
 
     function getFriendlist() {
-        retur
+        return null;
     }
 })();

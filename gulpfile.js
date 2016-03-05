@@ -53,10 +53,14 @@ gulp.task('styles', function() {
   ])
   .pipe(gulp.dest("build/fonts"));
 
+  // uncomment this part to include vendor css
+  /**
   gulp.src([
-    'bower_components/animate.css/animate.min.css'
+    'bower_components/...'
   ])
+  .pipe(concat('vendor.css'))
   .pipe(gulp.dest("build/styles"));
+  */
 
   return gulp.src([
     'styles/*.scss'
@@ -126,10 +130,8 @@ gulp.task('scripts', function() {
       standalone: true
     })),
     gulp.src([
-      'scripts/common/**/*.js',
-      'scripts/core/**/*.js',
-      'scripts/index/**/*.js',
-      'scripts/app.js'
+      'scripts/**/_*.js',
+      'scripts/**/*.js'
     ])
   )
   .pipe(plumber(plumberErrorHandler))

@@ -1,3 +1,20 @@
 $fa-font-path: "../fonts";
-
 @import "../bower_components/font-awesome/scss/font-awesome.scss";
+body {
+    font-family: 'Open Sans';
+    font-weight: 300;
+}
+
+.friendlist {
+    background: #f5f5f5;
+}
+
+.friendlist h1 {
+    font-size: 18px;
+}
+
+.friendlist .icon {
+    float: left;
+    width: 20%;
+    max-width: 100px;
+}

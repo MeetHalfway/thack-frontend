@@ -1,1 +1,20 @@
 <div ui-view="search"></div>
+<div class="row friendlist">
+    <div class="ui-card col-xs-12 col-lg-3">
+        <h1>Name</h1>
+        <p>Location</p>
+    </div>
+    <div class="ui-card col-xs-12 col-lg-3">
+        <h1>Name</h1>
+        <p>Location</p>
+    </div>
+</div>
+<input ng-model='twoway' class="form-control">
+<div>
+    {{ twoway }}
+</div>
+
+<p>Nothing here {{'yet' + '!'}}</p>
+<div ng-repeat="phone in phones">
+    phones {{ phone.name }}
+</div>

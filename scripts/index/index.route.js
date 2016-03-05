@@ -27,12 +27,12 @@
       parent: 'root',
       views: {
         '': {
-          templateUrl: 'scripts/app/templates/index/index.html',
+          templateUrl: 'templates/index/index.html',
           controller: 'indexCtrl'
         },
         'search@index': {
           templateUrl: 'templates/search/search.html',
-          controller: 'searchCtrl',
+          controller: 'indexCtrl',
           resolve: {
             searchFormData: getDefaultData
           }

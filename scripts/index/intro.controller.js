@@ -4,9 +4,9 @@
 
     angular
         .module('app.index')
-        .controller('indexCtrl', indexCtrl);
+        .controller('introCtrl', introCtrl);
 
-    function indexCtrl($scope) {
+    function introCtrl($scope) {
 
     }
 

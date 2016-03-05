@@ -2,12 +2,21 @@
 <html ng-app='app'>
 
 <head lang="en">
+<<<<<<< HEAD
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Meet Halfway</title>
-    <!--<link rel="stylesheet" type="text/css" href="styles/vendor.css">-->
+    <link rel="stylesheet" type="text/css" href="styles/vendor.css">
     <link rel="stylesheet" type="text/css" href="styles/style.css">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,600,800|Helvetica:200,400,600,800">
+=======
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meet Halfway</title>
+  <!--<link rel="stylesheet" type="text/css" href="styles/vendor.css">-->
+  <link rel="stylesheet" type="text/css" href="styles/style.css">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,600,800|Helvetica:200,400,600,800">
+>>>>>>> d9bccb99939ee26f7367acf43b58d05e2f5fc7b5
 </head>
 
 <body>
@@ -19,6 +28,8 @@
     <div ui-view>
         <!-- content in here will be overwritten when dynamic part is loaded -->
     </div>
+    <img src="https://scontent-ams3-1.xx.fbcdn.net/hprofile-xfa1/v/t1.0-1/p160x160/12079687_965407156830845_9004228287372467199_n.jpg?oh=8dd6d0999b2cddd89a41f1e045d2e75f&oe=57508737" />
+
     <footer class="ng-cloak" ng-cloak>
 
     </footer>

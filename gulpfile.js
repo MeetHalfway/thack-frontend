@@ -63,7 +63,7 @@ gulp.task('styles', function() {
   */
 
   return gulp.src([
-    'styles/*.scss'
+    'styles/*.sass'
   ])
   .pipe(plumber(plumberErrorHandler))
   .pipe(sass({ style: 'expanded' }))

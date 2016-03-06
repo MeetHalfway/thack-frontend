@@ -1,10 +1,26 @@
 $fa-font-path: "../fonts"
 @import "../bower_components/font-awesome/scss/font-awesome.scss"
 @import "bootstrap/_bootstrap.scss"
+
+
+$color-primary : #F36E7D
+$color-secondary: #FFD166
+$color-links: #F36E7D
+$color-lightest: #FFFFFF
+$color-light-gray: #EBEBEB
+$color-gray: #EEEEEE
+$color-dark-gray: darken(#D3D1D1, 20)
+$color-darkest: #202020
+$color-you: #60CFF8
+$color-friend: #946EF3
+$color-success: #85CE49
+
+
 body
     font-family: 'Rubik'
     font-weight: 300
     margin: 0
+    font-size: 14px
 
 body, h1, h2, h3, h4 , h5, p, div, span, b
     text-shadow: 1px 1px 1px rgba(0,0,0,0.004)
@@ -20,17 +36,32 @@ div, ul, li, span
     margin: 0
     padding: 0
 
-$color-primary : #F36E7D
-$color-secondary: #FFD166
-$color-links: #F36E7D
-$color-lightest: #FFFFFF
-$color-light-gray: #EBEBEB
-$color-gray: #EEEEEE
-$color-dark-gray: #D3D1D1
-$color-darkest: #202020
-$color-you: #60CFF8
-$color-friend: #946EF3
-$color-success: #85CE49
+.btn-fullwidth
+    width: 100%
+    text-align: center
+
+.btn-primary-inverted
+    @extend .btn
+    @extend .btn-lg
+    @extend .btn-default
+    border-color: $color-primary
+    color: $color-primary
+    font-weight: 500
+    margin-top: 8px
+    &:focus,
+    &:active
+        border-color: darken($color-primary, 5)!important
+        background: $color-primary!important
+        color: $color-lightest!important
+
+.text-align-right
+    text-align: right
+
+.text-align-left
+    text-align: left
+
+.text-align-center
+    text-align: center
 
 .friendlist
     background: #f5f5f5
@@ -57,18 +88,7 @@ $color-success: #85CE49
     border: 1px solid lighten($color-light-gray, 5)
 
 .friendlist .action
-    @extend .btn
-    @extend .btn-lg
-    @extend .btn-default
-    border-color: $color-primary
-    color: $color-primary
-    font-weight: 500
-    margin-top: 10px
-    &:focus,
-    &:active
-        border-color: darken($color-primary, 5)!important
-        background: $color-primary!important
-        color: $color-lightest!important
+    @extend .btn-primary-inverted
 
 .ui-card
     background: #fff
@@ -133,4 +153,134 @@ header
         display: block
         padding-bottom: 10px
     border-bottom: 1px solid $color-light-gray
+    padding-bottom: 5px
     margin-bottom: 10px
+
+
+.share-with-friend
+    font-size: 16px
+    font-weight: 500
+    margin-bottom: 20px
+    padding-left: 25px
+    position: relative
+    &:before
+        content: ""
+        height: 18px
+        width: 18px
+        background: url('/images/icons/share.png')no-repeat
+        background-size: contain
+        position: absolute
+        left: 0
+        top: 0
+
+.dates-widget
+    position: relative
+    clear: both
+    display: block
+    border-bottom: 1px solid $color-light-gray
+    padding-top: 10px
+    padding-bottom: 10px
+    margin-bottom: 10px
+    input[type="date"]
+        -webkit-appearance: none
+        -moz-appearance:    none
+        appearance:         none
+        width: 90%!important
+    input[type=date]::-webkit-calendar-picker-indicator,
+    input[type=date]::-webkit-inner-spin-button
+        -webkit-appearance: none
+        display: n65pxone
+        margin: 0
+        padding: 0
+
+.header-with-icons
+    min-height: 100px
+    padding-top: 5px
+
+.icons-container
+    position: relative
+
+.round-icon
+    height: 70px
+    width: 70px
+    border-radius: 200px
+    border: 4px solid
+    display: inline-block
+    overflow: hidden
+    margin-top: 10px
+    position: absolute
+    img
+        width: 100%
+        height: auto
+
+.icon-you
+    border-color: $color-you
+
+.icon-friend
+    border-color: $color-friend
+    left: 65px
+
+.trip-card
+    padding: 0px 10px
+    overflow: hidden
+    border: 1px solid darken($color-light-gray, 10)
+    background: lighten($color-light-gray, 10)
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1)
+    border-radius: 5px
+    margin-top: 5px
+    margin-bottom: 10px
+    h3
+        padding-bottom: 0px
+        margin-bottom: 0
+    h5
+        color: darken($color-dark-gray, 20)
+    .city-container
+        padding-bottom: 10px
+    .price
+        color: $color-success
+        margin-bottom: 5px
+    small
+        line-height: 1.2
+        color: darken($color-success, 20)
+    .details-list
+        background: $color-gray
+        .list-row
+            padding-left: 15px
+            padding-right: 15px
+            display: table
+            clear: both
+            border-top: 1px solid darken($color-gray, 10)
+            background: $color-gray!important
+            width: 100%
+            padding-top: 10px
+            padding-bottom: 10px
+    ul, li
+        margin: 0
+        padding: 0
+        list-style-type: none
+    .item-list
+        display: block
+        width: 100%
+        font-size: 18px
+        font-weight: 400
+        li
+            display: inline-block
+        .airport
+            font-size: 22px
+        .arrow
+            min-width: 25px
+            background: url('/images/icons/airport-arrow.png')no-repeat
+            background-size: contain
+            margin-right: 5px
+            margin-left: 5px
+            display: inline-block
+            height: 18px
+        .item-price
+            font-weight: 600
+            display: inline-block
+            float: right!important
+        small
+            display: block
+            color: $color-dark-gray
+        .flight-item-list
+            font-size: 22px

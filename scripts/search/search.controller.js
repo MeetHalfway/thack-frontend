@@ -41,7 +41,7 @@
         .module('app.search')
         .controller('searchCtrl', searchCtrl);
 
-    function searchCtrl($scope, $state, $stateParams, $http, $q) {
+    function searchCtrl($rootScope, $scope, $state, $stateParams, $http, $q) {
         console.log('searchCTRL exec');
         
         $scope.serverURL = "https://floating-harbor-60669.herokuapp.com/";
@@ -54,9 +54,12 @@
         $scope.trips = [];
         $scope.searchID = null;
         $scope.searchURL = null;
-        
-        $scope.friend = JSON.parse($stateParams.friend);
-        
+
+        $rootScope.friend = $scope.friend = JSON.parse($stateParams.friend);
+
+        if($rootScope.trips)
+            $scope.trips = $rootScope.trips;
+
         var d = new Date();
         var n = d.getDay();
         
@@ -86,9 +89,10 @@
         
         getSearchResults($http, $q, $scope, $scope.startDate, $scope.endDate, $scope.friend)
             .then(function(flights) {
-                
-                $scope.trips = flights;
+
+                $rootScope.trips = $scope.trips = flights;
                 $scope.searchID = flights.searchId;
+
                 $scope.searchURL = $scope.appURL + flights.searchId;
                 mapTrips($scope);
                 //now request the details

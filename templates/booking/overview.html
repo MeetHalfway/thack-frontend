@@ -30,15 +30,15 @@
 			</div>
 			<div class="col-xs-6 text-align-right">
 				<a href=''>Share link</a>
-				<a href=''>Pick a different city</a>
+				<a href="" ng-click="backToSearch()">Pick a different city</a>
 			</div>
 		</div>
 	</div>
 </header>
 
 <ul id="tabs">
-	<li class="active col-xs-6"><a>Flights</a></li>
-	<li class="col-xs-6"><a>Rental Homes</a></li>
+	<li ui-sref="booking.flights" ui-sref-active="active" class="col-xs-6"><a>Flights</a></li>
+	<li ui-sref="booking.rental" ui-sref-active="active" class="col-xs-6"><a>Rental Homes</a></li>
 </ul>
 
 

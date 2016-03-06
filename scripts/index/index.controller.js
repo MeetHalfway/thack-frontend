@@ -6,8 +6,12 @@
         .module('app.index')
         .controller('indexCtrl', indexCtrl);
 
-    function indexCtrl($scope, $http, $q, $state) {
-        
+    function indexCtrl($rootScope, $scope, $http, $q, $state) {
+
+        getProfile($http, $q)
+            .then(function(profile) {
+                $rootScope.profile = profile;
+            });
 
         getFriends($http, $q)
             .then(function(friendsList) {
@@ -18,12 +22,14 @@
                         return 1;
                     return 0;
                 });
-                $scope.friends = friendsList;
+                $rootScope.friends = friendsList;
             });
 
         $scope.proceed = function(friend) {
             console.log('proceed');
-            $state.go('search', { "friend": JSON.stringify(friend) });
+            $state.go('search', {
+                "friend": JSON.stringify(friend)
+            });
         }
     }
 
@@ -34,6 +40,21 @@
             .get('/api/friends')
             .success(function(friendsList) {
                 deferred.resolve(friendsList);
+            })
+            .error(function() {
+                deferred.reject();
+            });
+
+        return deferred.promise;
+    }
+
+    function getProfile(http, q) {
+        var deferred = q.defer();
+
+        http
+            .get('/api/profile')
+            .success(function(profile) {
+                deferred.resolve(profile);
             })
             .error(function() {
                 deferred.reject();

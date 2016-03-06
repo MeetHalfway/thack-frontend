@@ -196,7 +196,7 @@
         var i = 0;
         scope.fullTrips.forEach(function(trip) {
             if (detailedflights[i] != undefined) {
-                trip.updating = 'Price checked';
+                trip.updating = 'Checked';
                 
                 trip.flights[0].price =         detailedflights[i][0].price;
                 trip.flights[0].indate =        detailedflights[i][0].outbound.departureTime;

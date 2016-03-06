@@ -50,41 +50,41 @@
 			</div>
 		</div>
 	</div>
-	<div class="row">
+	<div ng-repeat="flight in flights.destinations" class="row">
 		<div class="col-xs-12">
 			<div class="trip-card">
 				<div class="row main-details">
 					<div class="col-xs-10">
 						<div class="row">
 							<div class="col-xs-8 city-container">
-								<h3>Warsaw</h3>
-								<h5>Poland</h5>
+								<h3>{{flight.city}}</h3>
+								<h5>{{flight.country}}</h5>
 							</div>
 							<div class="col-xs-4 text-align-right">
-								<h3 class="price">155€</h3>
+								<h3 class="price">{{flight.minPrice}}€</h3>
 								<small>Updating</small>
 							</div>
 						</div>
 					</div>
-					<button class="col-xs-1 dropdown-card">
+					<button type="button" class="col-xs-1 dropdown-card" aria-expanded="false" data-target="#collapse{{flight.city}}" data-toggle="collapse" aria-controls="collapse{{flight.city}}">
 						
 					</button>
 				</div>
-				<div class="row trip-details">
+				<div class="row trip-details collapse" id="collapse{{flight.city}}">
 					<ul class="details-list">
 						<li class="list-row">
 							<ul class="col-xs-12 item-list flight-item-list">
-								<li class="airport">SXF</li>
+								<li class="airport">{{flight.destinationLocation}}</li>
 								<li class="arrow"></li>
-								<li class="airport">WAW</li>
+								<li class="airport">{{flight.destinationLocation}}</li>
 								<li class="item-price">€ 22</li>
 							</ul>
 						</li>
 						<li class="list-row">
 							<ul class="col-xs-12 item-list flight-item-list">
-								<li class="airport">SXF</li>
+								<li class="airport">{{flight.destinationLocation}}</li>
 								<li class="arrow"></li>
-								<li class="airport">WAW</li>
+								<li class="airport">{{flight.destinationLocation}}</li>
 								<li class="item-price">€ 22</li>
 								<small>testing 124</small>
 							</ul>

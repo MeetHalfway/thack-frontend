@@ -57,11 +57,11 @@
 
         http
             .post(
-                scope.serverURL+'search', 
+                'https://floating-harbor-60669.herokuapp.com/search', 
                 {
-                    start: startDate,
-                    end: endDate,
-                    friend: friend
+                    'startDate': startDate,
+                    'endDate': endDate,
+                    'friend': friend
                 }
         )
             .success(function(flightsList) {

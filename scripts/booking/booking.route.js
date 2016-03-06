@@ -16,7 +16,7 @@
                 controller: 'bookingCtrl'
             })
             .state('booking.flights', {
-                url: "/booking/flights/:trip/",
+                url: "/booking/flights/:trip",
                 templateUrl: 'templates/booking/flights.html',
                 controller: 'bookingCtrl'
             })

@@ -476,22 +476,83 @@ header
             background-color: $color-light-gray
         &:not(:focus)
             background-color: none
-    .price
+
+.calculating
+    display: none
+
+.loading
+    .main-details
+        .price
+            position: relative
+            &:before
+                content: ''
+                background: url('/images/712.gif')no-repeat
+                height: 18px
+                width: 18px
+                margin-right: 5px
+                position: absolute
+                left: -17px
+                top: 4px
+                background-size: contain
+                display: inline-block
+        .fa-check
+            display: none!important
+            margin-left: 4px
+    .spin
         position: relative
         &:before
             content: ''
-            background: url('/images/712.gif')no-repeat
-            height: 18px
-            width: 18px
+            background: url('/images/spinner-dark.gif')no-repeat
+            height: 16px
+            width: 16px
             margin-right: 5px
             position: absolute
-            left: -17px
-            top: 4px
+            left: -19px
+            top: -2px
             background-size: contain
             display: inline-block
-        
+        span
+            display: none
+        &.item-price
+            top: 8px
+    .bar
+        display: none
+    .your-info,
+    .friend-info
+        height: 35px
+        min-height: 35px
+        display: block
+        li
+            display: none
+    .calculating
+        display: block
+        line-height: 40px
+    .blink
+        animation: blink 1s ease-in-out 0s infinite
+    .hours-together
+        display: none
+ 
+
+@keyframes blink
+    50%
+        opacity: 0.0
+@-webkit-keyframes blink
+    50%
+        opacity: 0.0
+
+
 .sharelink
-    padding: 0 10px
+    padding: 10px 10px 10px 10px
+    margin-bottom: 10px
+    border-bottom: 1px solid $color-light-gray
+    background: $color-gray
+    color: $color-darkest
+    text-transform: uppercase
+    margin-top: -10px
+    input
+        margin-top: 4px
+        font-weight: 500
+        color: darken($color-primary, 10)
 
 .header-tabs
     font-size: 18px

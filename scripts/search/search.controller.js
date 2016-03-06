@@ -56,7 +56,8 @@
         $scope.searchID = null;
         $scope.searchURL = null;
 
-        $rootScope.friend = $scope.friend = JSON.parse($stateParams.friend);
+        if(!$rootScope.friend && $stateParams.friend)
+            $rootScope.friend = $scope.friend = JSON.parse($stateParams.friend);
 
         if($rootScope.trips)
             $scope.trips = $rootScope.trips;
@@ -92,29 +93,30 @@
         $scope.endDate = moment(endDate).format("YYYY-MM-DD");
         
 //        $scope.redoSearch;
-        getSearchResults($http, $q, $scope, $scope.startDate, $scope.endDate, $scope.friend)
-            .then(function(flights) {
+        if(!$rootScope.trips) {
+            getSearchResults($http, $q, $scope, $scope.startDate, $scope.endDate, $scope.friend)
+                .then(function (flights) {
 
-                $rootScope.trips = $scope.trips = flights;
-                $scope.searchID = flights.searchId;
+                    $rootScope.trips = $scope.trips = flights;
+                    $scope.searchID = flights.searchId;
 
-                $scope.searchURL = $scope.appURL + flights.searchId;
+                    $scope.searchURL = $scope.appURL + flights.searchId;
                 mapTrips($http, $q, $scope);
-                //now request the details
-                console.log("getting more details");
-                getDetailedResults($http, $q, $scope).then(function(detailedflights) {
-                    console.log('got some details');
-                    updateTripDetails($scope, detailedflights);
-                    $rootScope.fullTrips = $scope.fullTrips;
-                });
+                    //now request the details
+                    console.log("getting more details");
+                    getDetailedResults($http, $q, $scope).then(function (detailedflights) {
+                        console.log('got some details');
+                        updateTripDetails($scope, detailedflights);
+                        $rootScope.fullTrips = $scope.fullTrips;
+                    });
             
                 
-            });
-
+                });
+        }
 
         $scope.selectTrip = function(trip) {
             $state.go('booking.flights', { 'trip' : JSON.stringify(trip) });
-        }
+        };
         
         $scope.redoSearch = function() {
             console.log('redo');
@@ -194,7 +196,7 @@
         var i = 0;
         scope.fullTrips.forEach(function(trip) {
             if (detailedflights[i] != undefined) {
-                trip.updating = 'done';
+                trip.updating = 'Price checked';
                 
                 trip.flights[0].price =         detailedflights[i][0].price;
                 trip.flights[0].indate =        detailedflights[i][0].outbound.departureTime;

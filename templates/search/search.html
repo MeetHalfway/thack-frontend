@@ -55,8 +55,8 @@
 	</div>
 	<div ng-repeat="trip in fullTrips" class="row">
 		<div class="col-xs-12">
-			<div class="trip-card">
-                <div ng-if="ready == false" class="overlay"><img src="images/477.gif" class="spinner" /></div>
+			<div class="trip-card" ng-class="ready == false ? 'loading' : ''">
+                
 				<div class="row main-details">
 					<div class="col-xs-10">
 						<div class="row">
@@ -155,7 +155,8 @@
 						<h4>43 Hours Together</h4>
 					</div>
 					<div class="col-xs-4" >
-						<button ng-click="selectTrip(trip)" class="btn btn-default btn-lg btn-primary btn-less-padding" >
+						<div ng-if="ready == false"><img src="images/477.gif" class="spinner" /></div>
+						<button ng-show="ready" ng-click="selectTrip(trip)" class="btn btn-default btn-lg btn-primary btn-less-padding" >
 							Choose
 						</button>
 					</div>

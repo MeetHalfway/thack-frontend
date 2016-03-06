@@ -37,6 +37,12 @@ div, ul, li, span
     padding: 0
     list-style-type: none
 
+.remove-padding
+    padding: 0
+
+.remove-padding-left
+    padding-left: 0
+
 .btn-fullwidth
     width: 100%
     text-align: center
@@ -232,6 +238,9 @@ header
 .header-with-icons
     min-height: 100px
     padding-top: 5px
+    .icon-friend
+        border-color: $color-friend
+        left: 65px
 
 .icons-container
     position: relative
@@ -254,7 +263,6 @@ header
 
 .icon-friend
     border-color: $color-friend
-    left: 65px
 
 .trips-message
     font-size: 16px
@@ -306,42 +314,42 @@ header
         margin: 0
         padding: 0
         list-style-type: none
-    .item-list
+.item-list
+    display: block
+    width: 100%
+    font-size: 18px
+    font-weight: 400
+    li
+        display: inline-block
+    &.flight-item-list
+        padding-left: 35px
+        background: url('/images/icons/airplane.png')no-repeat
+        background-size: 22px
+        background-position: left center
+    &.hotel-item-list
+        padding-left: 35px
+        background: url('/images/icons/accommodation.png')no-repeat
+        background-size: 22px
+        background-position: left center
+    .airport
+        font-size: 22px
+    .arrow
+        min-width: 25px
+        background: url('/images/icons/airport-arrow.png')no-repeat
+        background-size: contain
+        margin-right: 5px
+        margin-left: 5px
+        display: inline-block
+        height: 18px
+    .item-price
+        font-weight: 600
+        display: inline-block
+        float: right!important
+    small
         display: block
-        width: 100%
-        font-size: 18px
-        font-weight: 400
-        li
-            display: inline-block
-        &.flight-item-list
-            padding-left: 35px
-            background: url('/images/icons/airplane.png')no-repeat
-            background-size: 22px
-            background-position: left center
-        &.hotel-item-list
-            padding-left: 35px
-            background: url('/images/icons/accommodation.png')no-repeat
-            background-size: 22px
-            background-position: left center
-        .airport
-            font-size: 22px
-        .arrow
-            min-width: 25px
-            background: url('/images/icons/airport-arrow.png')no-repeat
-            background-size: contain
-            margin-right: 5px
-            margin-left: 5px
-            display: inline-block
-            height: 18px
-        .item-price
-            font-weight: 600
-            display: inline-block
-            float: right!important
-        small
-            display: block
-            color: $color-dark-gray
-        .flight-item-list
-            font-size: 22px
+        color: $color-dark-gray
+    .flight-item-list
+        font-size: 22px
 
 .graph
     border-top: 1px solid $color-light-gray
@@ -453,3 +461,92 @@ header
             background-color: $color-light-gray
         &:not(:focus)
             background-color: none
+
+.header-tabs
+    font-size: 18px
+    padding-top: 10px
+    h2
+        text-align: left
+        margin-bottom: 0
+        padding-bottom: 0
+        margin-top: 0
+    h4
+        color: darken($color-darkest, 10)
+    a
+        text-align: right
+        font-weight: 500
+        display: inline-block
+        font-size: 16px
+        line-height: 20px
+
+#tabs
+    display: block
+    clear: both
+    padding: 5px 15px 10px 15px
+    border-bottom: 1px solid $color-light-gray
+    margin-bottom: 0px
+    min-height: 37px
+    li
+        text-align: center
+        position: relative
+        display: inline-block
+        min-height: 32px
+        a
+            position: relative
+            width: 100%
+            font-size: 16px
+            text-transform: uppercase
+            text-align: center
+            display: block
+            font-weight: 500
+            color: $color-dark-gray
+            cursor: pointer
+            &:focus,
+            &:hover
+                color: darken($color-primary, 10)
+                text-decoration: none
+        &.active
+            border-bottom: 3px solid $color-primary
+            a
+                color: $color-primary
+
+
+.dark-bg
+    background-color: $color-gray
+    color: $color-darkest
+    display: block
+    padding: 3px 0px
+
+.stripe
+    border: 1px solid $color-dark-gray
+    border-left: none
+    border-right: none
+    background: $color-lightest
+    color: $color-darkest
+    padding: 10px 15px
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1)
+    font-size: 16px
+    .price
+        text-align: right
+        h3
+            color: $color-success
+            margin-top: 0px
+            padding-top: 0px
+
+.overview-item-list
+    .airport
+        font-size: 16px
+    .arrow
+        background-size: 16px auto
+
+.pre-stripe
+    padding-left: 15px
+    color: $color-darkest
+
+.agency
+    text-align: right
+    display: block
+    padding-top: 5px
+    border-top: 1px solid $color-light-gray
+    margin-top: 5px
+    color: $color-dark-gray

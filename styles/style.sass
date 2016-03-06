@@ -220,6 +220,13 @@ header
     border-color: $color-friend
     left: 65px
 
+.trips-message
+    font-size: 16px
+    margin-top: 10px
+    margin-bottom: 10px
+    font-weight: 400
+    color: $color-dark-gray
+
 .trip-card
     padding: 0px 10px
     overflow: hidden
@@ -265,6 +272,16 @@ header
         font-weight: 400
         li
             display: inline-block
+        &.flight-item-list
+            padding-left: 35px
+            background: url('/images/icons/airplane.png')no-repeat
+            background-size: 22px
+            background-position: left center
+        &.hotel-item-list
+            padding-left: 35px
+            background: url('/images/icons/accommodation.png')no-repeat
+            background-size: 22px
+            background-position: left center
         .airport
             font-size: 22px
         .arrow
@@ -284,3 +301,81 @@ header
             color: $color-dark-gray
         .flight-item-list
             font-size: 22px
+
+.graph
+    ul
+        li:nth-child(even)
+            background: rgba($color-darkest, 0.02)
+    .date-info
+        padding: 0px 15px 0px 15px
+        display: table
+        border-bottom: 1px solid $color-light-gray
+        b
+            display: block
+        li
+            display: inline-block
+            border-left: 1px solid $color-light-gray
+            padding-left: 5px
+            color: darken($color-dark-gray, 10)
+            padding-bottom: 10px
+            padding-top: 10px
+            &:first-child
+                border-left: none
+                padding-left: none
+    .your-info
+        position: relative
+        margin-top: -1px
+        padding: 0px 15px
+        min-height: 50px
+        display: table
+        border-bottom: 1px solid $color-light-gray
+        li
+            display: inline-block
+            border-left: 1px solid $color-light-gray
+            padding-left: 3px
+            min-height: 60px
+            &:first-child
+                border-left: none
+                padding-left: none
+        .userdata h5
+            color: $color-you
+        .bar
+            background: $color-you!important
+    .friend-info
+        position: relative
+        margin-top: -5px
+        padding: 0px 15px
+        min-height: 60px
+        display: table
+        border-bottom: 1px solid $color-light-gray
+        li
+            display: inline-block
+            border-left: 1px solid $color-light-gray
+            padding-left: 3px
+            min-height: 50px
+            &:first-child
+                border-left: none
+                padding-left: none
+        .userdata h5
+            color: $color-friend
+        .bar
+            background: $color-friend!important
+    .userdata
+        position: absolute
+        width: 100%
+        top: 3px
+        left: 0px
+        padding: 0px 15px
+        font-size: 16px
+        h5
+            display: inline-block
+            text-transform: uppercase
+            &.hours
+                float: right
+                text-transform: none
+    .bar
+        height: 15px
+        position: absolute
+        bottom: 10px
+        background: $color-dark-gray
+        display: block

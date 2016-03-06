@@ -150,6 +150,9 @@
             getHotelResults(http, q, scope, destination.city).then(function(hotelprice) {
                 console.log('getting hotel price for '+destination.city);
                 console.log(hotelprice);
+                if (hotelprice == null) {
+                    hotelprice = 'no data';
+                }
                 
                 scope.fullTrips.push({
                     city: destination.city,

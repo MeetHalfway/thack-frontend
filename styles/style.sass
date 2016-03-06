@@ -347,7 +347,15 @@ header
         background-size: 22px
         background-position: left center
     .airport
+        vertical-align: top
         font-size: 22px
+        overflow: hidden
+        max-width: 30%
+        small
+            max-width: 100%
+            max-height: 20px
+            overflow: hidden
+
     .arrow
         min-width: 25px
         background: url('/images/icons/airport-arrow.png')no-repeat
@@ -498,22 +506,23 @@ header
         .fa-check
             display: none!important
             margin-left: 4px
-    .userdata
-        .hours
-            position: relative
-            &:before
-                content: ''
-                background: url('/images/spinner-dark.gif')no-repeat
-                height: 16px
-                width: 16px
-                margin-right: 5px
-                position: absolute
-                left: -19px
-                top: -2px
-                background-size: contain
-                display: inline-block
-            span
-                display: none
+    .spin
+        position: relative
+        &:before
+            content: ''
+            background: url('/images/spinner-dark.gif')no-repeat
+            height: 16px
+            width: 16px
+            margin-right: 5px
+            position: absolute
+            left: -19px
+            top: -2px
+            background-size: contain
+            display: inline-block
+        span
+            display: none
+        &.item-price
+            top: 8px
     .bar
         display: none
     .your-info,
@@ -526,11 +535,32 @@ header
     .calculating
         display: block
         line-height: 40px
+    .blink
+        animation: blink 1s ease-in-out 0s infinite
     .hours-together
         display: none
-        
+ 
+
+@keyframes blink
+    50%
+        opacity: 0.0
+@-webkit-keyframes blink
+    50%
+        opacity: 0.0
+
+
 .sharelink
-    padding: 0 10px
+    padding: 10px 10px 10px 10px
+    margin-bottom: 10px
+    border-bottom: 1px solid $color-light-gray
+    background: $color-gray
+    color: $color-darkest
+    text-transform: uppercase
+    margin-top: -10px
+    input
+        margin-top: 4px
+        font-weight: 500
+        color: darken($color-primary, 10)
 
 .header-tabs
     font-size: 18px

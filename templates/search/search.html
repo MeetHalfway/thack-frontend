@@ -1,3 +1,5 @@
+<a href="/" class="logo-header">
+</a>
 <header class="header-with-icons">
 	<div class="container">
 		<div class="row">
@@ -22,6 +24,7 @@
 	</div>
 </header>
 <div id="sharelink" class="sharelink collapse">
+	<b>Copy and share this link</b>
     <input ng-model="searchURL" class="form-control">
 </div>
 
@@ -66,7 +69,7 @@
 							</div>
 							<div class="col-xs-4 text-align-right">
 								<h3 class="price ">{{trip.price}}€</h3>
-								<small>{{trip.updating}}<i class="fa fa-check"></i></small>
+								<small >{{trip.updating}}<i class="fa fa-check"></i></small>
 							</div>
 						</div>
 					</div>
@@ -81,7 +84,7 @@
 								<li class="airport">{{trip.flights[0].originLocation}}</li>
 								<li class="arrow"></li>
 								<li class="airport">{{trip.flights[0].destinationLocation}}</li>
-								<li class="item-price">{{ trip.flights[0].price }}</li>
+								<li class="item-price spin">{{ trip.flights[0].price }}€</li>
 							</ul>
 						</li>
 						<li class="list-row">
@@ -89,13 +92,13 @@
 								<li class="airport">{{trip.flights[1].originLocation}}</li>
 								<li class="arrow"></li>
 								<li class="airport">{{trip.flights[1].destinationLocation}}</li>
-								<li class="item-price">{{ trip.flights[1].price }}</li>
+								<li class="item-price spin">{{ trip.flights[1].price }}€</li>
 							</ul>
 						</li>
 						<li class="list-row">
 							<ul class="col-xs-12 item-list hotel-item-list">
 								<li class="other">Average home rental</li>
-								<li class="item-price">€ 22</li>
+								<li class="item-price spin">€ {{trip.hotel.avgPrice}}</li>
 							</ul>
 						</li>
 					</ul>
@@ -127,7 +130,7 @@
 						</li>
 						<div class="userdata">
 							<h5>Alessio</h5>
-							<h5 class="hours">
+							<h5 class="hours spin">
 								<span>
 									{{ getDuration(trip, 0) }}h
 								</span>
@@ -149,7 +152,7 @@
 						</li>
 						<div class="userdata">
 							<h5>Nele</h5>
-							<h5 class="hours">
+							<h5 class="hours spin">
 								<span>
 									{{ getDuration(trip, 1) }}h
 								</span>

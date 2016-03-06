@@ -103,16 +103,16 @@
 				<div class="row graph">
 					<ul class="col-xs-12 date-info">
 						<li style="width: 33.33%;">
-							<b>09.02</b>
-							Friday
+							<b>{{ getFormattedDay(trip, 0, 1) }}</b>
+							{{ getFormattedDay(trip, 0, 2) }}
 						</li>
 						<li style="width: 33.33%;">
-							<b>09.02</b>
-							Friday
+							<b>{{ getFormattedDay(trip, 1, 1) }}</b>
+							{{ getFormattedDay(trip, 1, 2) }}
 						</li>
 						<li style="width: 33.33%;">
-							<b>09.02</b>
-							Friday
+							<b>{{ getFormattedDay(trip, 2, 1) }}</b>
+							{{ getFormattedDay(trip, 2, 2) }}
 						</li>
 					</ul>
 					<ul class="col-xs-12 your-info">
@@ -129,11 +129,12 @@
 							<h5>Alessio</h5>
 							<h5 class="hours">
 								<span>
-									48h
+									{{ getDuration(trip, 0) }}h
 								</span>
 							</h5>
 						</div>
-						<div class="bar" style="width: 80%; left: 10%;">
+						<div class="bar"
+							 ng-style="{ 'width': getWidth(trip, 0) + '%', 'left': getLeftMargin(trip, 0) + '%' }">
 						</div>
 					</ul>
 					<ul class="col-xs-12 friend-info">
@@ -150,18 +151,19 @@
 							<h5>Nele</h5>
 							<h5 class="hours">
 								<span>
-									48h
+									{{ getDuration(trip, 1) }}h
 								</span>
 							</h5>
 						</div>
-						<div class="bar" style="width: 67%; left: 5%;">
+						<div class="bar"
+							 ng-style="{ 'width': getWidth(trip, 1) + '%', 'left': getLeftMargin(trip, 1) + '%' }">
 						</div>
 					</ul>
 				</div> 
 				<div class="row cta-row">
 					<div class="col-xs-8">
 						<p class="calculating">Calculating hours together</p>
-						<h4 class="hours-together">43 Hours Together</h4>
+						<h4 class="hours-together">{{ getTimeTogether(trip) }} Hours Together</h4>
 					</div>
 					<div class="col-xs-4" >
 						<div ng-if="ready == false"><img src="images/477.gif" class="spinner" /></div>

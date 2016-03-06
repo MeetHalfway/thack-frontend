@@ -44,7 +44,7 @@
     function searchCtrl($rootScope, $scope, $state, $stateParams, $http, $q) {
         console.log('searchCTRL exec');
         
-        $scope.serverURL = "https://floating-harbor-60669.herokuapp.com/";
+        $scope.serverURL = "http://localhost:8080/";
         $scope.appURL = "http://localhost:8000/#/searched/";
         $scope.startDate;
         $scope.endDate;
@@ -137,10 +137,76 @@
                         $rootScope.fullTrips = $scope.fullTrips;
                     });
                 });
+        };
+
+        $scope.getLeftMargin = function(trip, travellerIndex) {
+
+            if(trip && trip.flights && trip.flights[travellerIndex].indate) {
+                var start = trip.flights[travellerIndex].indate;
+                start = start.substring(start.length - 8, start.length - 6);
+
+                return start / 72 * 100;
+            }
+
+            return 0;
+        };
+
+        $scope.getDuration = function(trip, travellerIndex) {
+            if(trip && trip.flights && trip.flights[travellerIndex].indate) {
+                var start = trip.flights[travellerIndex].indate;
+                var arrival = trip.flights[travellerIndex].outdate;
+
+                return Math.round(Math.abs(moment(start, "YYYY-MM-DDThh:mm")
+                    .diff(moment(arrival, "YYYY-MM-DDThh:mm"), 'hours')));
+            }
+
+            return 0;
+        };
+
+        $scope.getTimeTogether = function(trip) {
+            if(trip && trip.flights && trip.flights[0].indate) {
+
+                var arrivalOne = trip.flights[0].indate;
+                var arrivalTwo = trip.flights[1].indate;
+
+                var departureOne = trip.flights[0].outdate;
+                var departureTwo = trip.flights[1].outdate;
+
+                var arrival = moment(arrivalOne, "YYYY-MM-DDThh:mm")
+                    .isBefore(moment(arrivalTwo, "YYYY-MM-DDThh:mm")) ? arrivalTwo : arrivalOne;
+
+                var departure = moment(departureOne, "YYYY-MM-DDThh:mm")
+                    .isBefore(moment(departureTwo, "YYYY-MM-DDThh:mm")) ? departureOne : departureTwo;
+
+                return Math.round(Math.abs(moment(departure, "YYYY-MM-DDThh:mm")
+                    .diff(moment(arrival, "YYYY-MM-DDThh:mm"), 'hours')));
+            }
+        };
+
+        $scope.getWidth = function(trip, travellerIndex) {
+
+            var duration = $scope.getDuration(trip, travellerIndex);
+            return duration / 72 * 100;
+        };
+
+        $scope.getFormattedDay = function(trip, dayIndex, format) {
+
+            if(trip && trip.flights && trip.flights[0].indate) {
+
+                var firstDay = moment(trip.flights[0].indate, "YYYY-MM-DDThh:mm");
+                var secondDay = firstDay.clone().add(1, 'day');
+                var thirdDay = secondDay.clone().add(1, 'day');
+
+                var dayArray = [
+                    firstDay,
+                    secondDay,
+                    thirdDay
+                ];
+
+                return format == 1 ? dayArray[dayIndex].format("DD.MM.") : dayArray[dayIndex].format("dddd")
+            }
         }
     }
-    
-    
     
     function mapTrips(scope) {
         scope.trips.destinations.forEach(function(destination) {
@@ -217,7 +283,7 @@
 
         http
             .post(
-                'https://floating-harbor-60669.herokuapp.com/search', 
+                'http://localhost:8080/search',
                 {
                     'startDate': startDate,
                     'endDate': endDate,
@@ -238,7 +304,7 @@
         var deferred = q.defer();
         scope.ready = false;
         http
-            .get('https://floating-harbor-60669.herokuapp.com/search/details/'+scope.searchID)
+            .get('http://localhost:8080/search/details/' + scope.searchID)
             .success(function(detailList) {
                 deferred.resolve(detailList);
                 scope.ready = true;

@@ -6,21 +6,24 @@
 					<img src="images/you-icon.jpg" />
 				</div>
 				<div class="round-icon icon-friend">
-					<img src="images/friend-icon.jpg" />
+					<img src="{{trips.people[0].picture}}" />
 				</div>
 			</div>
 			<div class="col-xs-7">
 				<h4>
 					Your trip together with
-					<b>Nele</b>
+					<b>{{trips.people[0].first_name}}</b>
 				</h4>
-				<a class="share-with-friend">
-					Share with Nele
+				<a class="share-with-friend" role="button" data-toggle="collapse" data-target="#sharelink">
+					Share with {{trips.people[0].first_name}}
 				</a>
 			</div>
 		</div>
 	</div>
 </header>
+<div id="sharelink" class="sharelink collapse">
+    <input ng-model="searchURL" class="form-control">
+</div>
 
 <div class="dates-widget container">
 	<form class="form-inline row">
@@ -50,41 +53,41 @@
 			</div>
 		</div>
 	</div>
-	<div ng-repeat="flight in flights.destinations" class="row">
+	<div ng-repeat="trip in trips.destinations" class="row">
 		<div class="col-xs-12">
 			<div class="trip-card">
 				<div class="row main-details">
 					<div class="col-xs-10">
 						<div class="row">
 							<div class="col-xs-8 city-container">
-								<h3>{{flight.city}}</h3>
-								<h5>{{flight.country}}</h5>
+								<h3>{{trip.city}}</h3>
+								<h5>{{trip.country}}</h5>
 							</div>
 							<div class="col-xs-4 text-align-right">
-								<h3 class="price">{{flight.minPrice}}€</h3>
-								<small>Updating</small>
+								<h3 class="price">{{trip.minPrice}}€</h3>
+								<small>{{trip.updating}}</small>
 							</div>
 						</div>
 					</div>
-					<button type="button" class="col-xs-1 dropdown-card" aria-expanded="false" data-target="#collapse{{flight.city}}" data-toggle="collapse" aria-controls="collapse{{flight.city}}">
+					<button type="button" class="col-xs-1 dropdown-card" aria-expanded="false" data-target="#collapse{{trip.city}}" data-toggle="collapse" aria-controls="collapse{{trip.city}}">
 						
 					</button>
 				</div>
-				<div class="row trip-details collapse" id="collapse{{flight.city}}">
+				<div class="row trip-details collapse" id="collapse{{trip.city}}">
 					<ul class="details-list">
 						<li class="list-row">
-							<ul class="col-xs-12 item-list flight-item-list">
-								<li class="airport">{{flight.originLocations[0]}}</li>
+							<ul class="col-xs-12 item-list trip-item-list">
+								<li class="airport">{{trip.originLocations[0]}}</li>
 								<li class="arrow"></li>
-								<li class="airport">{{flight.destinationLocation}}</li>
+								<li class="airport">{{trip.destinationLocation}}</li>
 								<li class="item-price">€ 22</li>
 							</ul>
 						</li>
 						<li class="list-row">
-							<ul class="col-xs-12 item-list flight-item-list">
-								<li class="airport">{{flight.originLocations[1]}}</li>
+							<ul class="col-xs-12 item-list trip-item-list">
+								<li class="airport">{{trip.originLocations[1]}}</li>
 								<li class="arrow"></li>
-								<li class="airport">{{flight.destinationLocation}}</li>
+								<li class="airport">{{trip.destinationLocation}}</li>
 								<li class="item-price">€ 22</li>
 								<small>testing 124</small>
 							</ul>

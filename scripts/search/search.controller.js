@@ -14,13 +14,19 @@
                     "destinationLocation": "CPH",
                     "originLocation": "TXL",
                     "airline": "",
-                    "price": ""
+                    "price": "",
+                    "departure": "",
+                    "arrival": "",
+                    "booking link": ""
                 },
                 {
                     "destinationLocation": "CPH",
                     "originLocation": "TXL",
                     "airline": "",
-                    "price": ""
+                    "price": "",
+                    "departure": "",
+                    "arrival": "",
+                    "booking link": ""
                 }
                 
             ],
@@ -39,8 +45,13 @@
         console.log('searchCTRL exec');
         
         $scope.serverURL = "https://floating-harbor-60669.herokuapp.com/";
+        $scope.appURL = "http://localhost:8000/#/searched/";
         $scope.startDate;
         $scope.endDate;
+        
+        $scope.trips = [];
+        $scope.searchID = null;
+        $scope.searchURL = null;
         
         $scope.friend = JSON.parse($stateParams.friend);
         
@@ -71,16 +82,23 @@
         $scope.startDate = moment(startDate).format("YYYY-MM-DD");
         $scope.endDate = moment(endDate).format("YYYY-MM-DD");
         
-//        console.log(startDate);
-//        console.log(endDate);
-        
-//        console.log($rootScope.serverURL);
         getSearchResults($http, $q, $scope, $scope.startDate, $scope.endDate, $scope.friend)
             .then(function(flights) {
                 
-                $scope.flights = flights;
+                $scope.trips = flights;
+                $scope.searchID = flights.searchId;
+                $scope.searchURL = $scope.appURL + flights.searchId;
+                mapTrips($scope);
+                //now request the details
+                getDetailedResults($http, $q, $scope);
             });
 
+    }
+    
+    function mapTrips(scope) {
+        scope.trips.destinations.forEach(function(trip) {
+            trip.updating="updating";
+        });
     }
     
     function getSearchResults(http, q, scope, startDate, endDate, friend) {
@@ -97,6 +115,21 @@
         )
             .success(function(flightsList) {
                 deferred.resolve(flightsList);
+            })
+            .error(function() {
+                deferred.reject();
+            });
+
+        return deferred.promise;
+    }
+    
+    function getDetailedResults(http, q, scope) {
+        var deferred = q.defer();
+
+        http
+            .get('/api/search/detail')
+            .success(function(friendsList) {
+                deferred.resolve(friendsList);
             })
             .error(function() {
                 deferred.reject();

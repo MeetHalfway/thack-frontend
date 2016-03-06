@@ -96,7 +96,7 @@ gulp.task('webserver', function() {
       livereload: true,
       open: '/',
       proxies: [
-        { source: '/api', target: 'http://localhost:8080/'}
+        { source: '/api', target: 'https://floating-harbor-60669.herokuapp.com/'}
       ]
     }));
 });

@@ -8,11 +8,10 @@
 	</div>
 </header>
 <ul class="row-fluid friendlist">
-
     <li ng-repeat="friend in friends" class="ui-card ui-card-list-element col-xs-12">
-        <a href="#" class="action">invite</a>
-        <img class="icon" src="images/icon1.jpg" />
+        <a ng-click="proceed(friend)" class="action">invite</a>
+        <img class="icon" src="{{ friend.picture }}" />
         <h1>{{ friend.first_name }} {{ friend.second_name }}</h1>
-        <p><i class="fa fa-map-marker"></i> Berlin | 0 trips together</p>
+        <p><i class="fa fa-map-marker"></i> {{ friend.location }} <br/> 0 trips together</p>
     </li>
 </ul>

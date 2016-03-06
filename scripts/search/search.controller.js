@@ -90,7 +90,9 @@
                 $scope.searchURL = $scope.appURL + flights.searchId;
                 mapTrips($scope);
                 //now request the details
-                getDetailedResults($http, $q, $scope);
+                getDetailedResults($http, $q, $scope).then(function(flights) {
+                    console.log('got some details');
+                });
             });
 
     }
@@ -127,9 +129,9 @@
         var deferred = q.defer();
 
         http
-            .get('/api/search/detail')
-            .success(function(friendsList) {
-                deferred.resolve(friendsList);
+            .get('/api/search/details/'+scope.searchID)
+            .success(function(detailList) {
+                deferred.resolve(detailList);
             })
             .error(function() {
                 deferred.reject();

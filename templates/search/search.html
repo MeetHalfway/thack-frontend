@@ -66,7 +66,7 @@
 							</div>
 							<div class="col-xs-4 text-align-right">
 								<h3 class="price ">{{trip.price}}€</h3>
-								<small>{{trip.updating}}</small>
+								<small>{{trip.updating}}<i class="fa fa-check"></i></small>
 							</div>
 						</div>
 					</div>
@@ -127,7 +127,11 @@
 						</li>
 						<div class="userdata">
 							<h5>Alessio</h5>
-							<h5 class="hours">48h</h5>
+							<h5 class="hours">
+								<span>
+									48h
+								</span>
+							</h5>
 						</div>
 						<div class="bar" style="width: 80%; left: 10%;">
 						</div>
@@ -143,8 +147,12 @@
 							
 						</li>
 						<div class="userdata">
-							<h5>Nelle</h5>
-							<h5 class="hours">48h</h5>
+							<h5>Nele</h5>
+							<h5 class="hours">
+								<span>
+									48h
+								</span>
+							</h5>
 						</div>
 						<div class="bar" style="width: 67%; left: 5%;">
 						</div>
@@ -152,7 +160,8 @@
 				</div> 
 				<div class="row cta-row">
 					<div class="col-xs-8">
-						<h4>43 Hours Together</h4>
+						<p class="calculating">Calculating hours together</p>
+						<h4 class="hours-together">43 Hours Together</h4>
 					</div>
 					<div class="col-xs-4" >
 						<div ng-if="ready == false"><img src="images/477.gif" class="spinner" /></div>

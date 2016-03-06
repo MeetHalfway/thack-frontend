@@ -476,19 +476,58 @@ header
             background-color: $color-light-gray
         &:not(:focus)
             background-color: none
-    .price
-        position: relative
-        &:before
-            content: ''
-            background: url('/images/712.gif')no-repeat
-            height: 18px
-            width: 18px
-            margin-right: 5px
-            position: absolute
-            left: -17px
-            top: 4px
-            background-size: contain
-            display: inline-block
+
+.calculating
+    display: none
+
+.loading
+    .main-details
+        .price
+            position: relative
+            &:before
+                content: ''
+                background: url('/images/712.gif')no-repeat
+                height: 18px
+                width: 18px
+                margin-right: 5px
+                position: absolute
+                left: -17px
+                top: 4px
+                background-size: contain
+                display: inline-block
+        .fa-check
+            display: none!important
+            margin-left: 4px
+    .userdata
+        .hours
+            position: relative
+            &:before
+                content: ''
+                background: url('/images/spinner-dark.gif')no-repeat
+                height: 16px
+                width: 16px
+                margin-right: 5px
+                position: absolute
+                left: -19px
+                top: -2px
+                background-size: contain
+                display: inline-block
+            span
+                display: none
+    .bar
+        display: none
+    .your-info,
+    .friend-info
+        height: 35px
+        min-height: 35px
+        display: block
+        li
+            display: none
+    .calculating
+        display: block
+        line-height: 40px
+    .hours-together
+        display: none
         
 .sharelink
     padding: 0 10px

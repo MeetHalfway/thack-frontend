@@ -77,19 +77,18 @@
 					<ul class="details-list">
 						<li class="list-row">
 							<ul class="col-xs-12 item-list trip-item-list">
-								<li class="airport">{{trip.originLocations[0]}}</li>
+								<li class="airport">{{trip.flights[0].originLocation}}</li>
 								<li class="arrow"></li>
-								<li class="airport">{{trip.destinationLocation}}</li>
-								<li class="item-price">€ 22</li>
+								<li class="airport">{{trip.flights[0].destinationLocation}}</li>
+								<li class="item-price">{{ trip.flights[0].price }}</li>
 							</ul>
 						</li>
 						<li class="list-row">
 							<ul class="col-xs-12 item-list trip-item-list">
-								<li class="airport">{{trip.originLocations[1]}}</li>
+								<li class="airport">{{trip.flights[1].originLocation}}</li>
 								<li class="arrow"></li>
-								<li class="airport">{{trip.destinationLocation}}</li>
-								<li class="item-price">€ 22</li>
-								<small>testing 124</small>
+								<li class="airport">{{trip.flights[1].destinationLocation}}</li>
+								<li class="item-price">{{ trip.flights[1].price }}</li>
 							</ul>
 						</li>
 						<li class="list-row">

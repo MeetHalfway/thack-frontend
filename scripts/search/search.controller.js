@@ -153,7 +153,14 @@
                 trip.flights[0].departure = detailedflights[i][0].inbound.departureTime;
                 trip.flights[0].booking_link = detailedflights[i][0].bookingLink;
 //                trip.flights[0].booking_link = detailedflights[i][0].
-                i = i++;
+                
+                trip.flights[1].price = detailedflights[i][1].price;
+                trip.flights[1].arrival = detailedflights[i][1].outbound.departureTime;
+                trip.flights[1].departure = detailedflights[i][1].inbound.departureTime;
+                trip.flights[1].booking_link = detailedflights[i][1].bookingLink;
+                
+                trip.price = trip.flights[0].price + trip.flights[1].price;
+                i++;
             }                            
         });
     }

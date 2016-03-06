@@ -1,6 +1,35 @@
 (function () {
 
     'use strict';
+    
+    /*
+        TRIP Object
+        {
+            city: "",
+            country: "",
+            price: "",
+            updating: "updating",
+            flights: [
+                {
+                    "destinationLocation": "CPH",
+                    "originLocation": "TXL",
+                    "airline": "",
+                    "price": ""
+                },
+                {
+                    "destinationLocation": "CPH",
+                    "originLocation": "TXL",
+                    "airline": "",
+                    "price": ""
+                }
+                
+            ],
+            hotel: 
+                {
+                    "avgPrice": ""
+                }
+        }
+    */
 
     angular
         .module('app.search')
@@ -10,6 +39,8 @@
         console.log('searchCTRL exec');
         
         $scope.serverURL = "https://floating-harbor-60669.herokuapp.com/";
+        $scope.startDate;
+        $scope.endDate;
         
         $scope.friend = JSON.parse($stateParams.friend);
         
@@ -37,14 +68,14 @@
         var endDate = new Date();
         endDate.setDate(startDate.getDate() + 2);
         
-        startDate = moment(startDate).format("YYYY-MM-DD");
-        endDate = moment(endDate).format("YYYY-MM-DD");
+        $scope.startDate = moment(startDate).format("YYYY-MM-DD");
+        $scope.endDate = moment(endDate).format("YYYY-MM-DD");
         
 //        console.log(startDate);
 //        console.log(endDate);
         
 //        console.log($rootScope.serverURL);
-        getSearchResults($http, $q, $scope, startDate, endDate, $scope.friend)
+        getSearchResults($http, $q, $scope, $scope.startDate, $scope.endDate, $scope.friend)
             .then(function(flights) {
                 
                 $scope.flights = flights;

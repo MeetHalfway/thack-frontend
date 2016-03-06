@@ -53,7 +53,7 @@
 			</div>
 		</div>
 	</div>
-	<div ng-repeat="trip in trips.destinations" class="row">
+	<div ng-repeat="trip in fullTrips" class="row">
 		<div class="col-xs-12">
 			<div class="trip-card">
 				<div class="row main-details">
@@ -64,7 +64,7 @@
 								<h5>{{trip.country}}</h5>
 							</div>
 							<div class="col-xs-4 text-align-right">
-								<h3 class="price">{{trip.minPrice}}€</h3>
+								<h3 class="price">{{trip.price}}€</h3>
 								<small>{{trip.updating}}</small>
 							</div>
 						</div>

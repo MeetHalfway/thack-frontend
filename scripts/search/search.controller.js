@@ -99,15 +99,16 @@
                 $scope.searchID = flights.searchId;
 
                 $scope.searchURL = $scope.appURL + flights.searchId;
-                mapTrips($scope);
+                mapTrips($http, $q, $scope);
                 //now request the details
                 console.log("getting more details");
                 getDetailedResults($http, $q, $scope).then(function(detailedflights) {
                     console.log('got some details');
                     updateTripDetails($scope, detailedflights);
                     $rootScope.fullTrips = $scope.fullTrips;
-//                    $scope.buttonActive = "";
                 });
+            
+                
             });
 
 
@@ -126,7 +127,7 @@
                     $scope.searchID = flights.searchId;
 
                     $scope.searchURL = $scope.appURL + flights.searchId;
-                    mapTrips($scope);
+                    mapTrips($http, $q, $scope);
                     //now request the details
                     console.log("getting more details");
                     getDetailedResults($http, $q, $scope).then(function(detailedflights) {
@@ -140,44 +141,52 @@
     
     
     
-    function mapTrips(scope) {
+    function mapTrips(http, q, scope) {
         scope.trips.destinations.forEach(function(destination) {
             //trip.updating="updating";
-            scope.fullTrips.push({
-                city: destination.city,
-                country: destination.country,
-                price: destination.minPrice,
-                updating: "updating",
-                flights: [
-                    {
-                        "destinationLocation": destination.destinationLocation,
-                        "originLocation": destination.originLocations[0],
-//                        "airline": "",
-                        "price": "",
-                        "indate": "",
-                        "induration": "",
-                        "outdate": "",  
-                        "outduration": "",
-                        "booking_link": ""
-                    },
-                    {
-                        "destinationLocation": destination.destinationLocation,
-                        "originLocation": destination.originLocations[1],
-//                        "airline": "",
-                        "price": "",
-                        "indate": "",
-                        "induration": "",
-                        "outdate": "",  
-                        "outduration": "",
-                        "booking_link": ""
-                    }
+            
+            getHotelResults(http, q, scope, destination.city).then(function(hotelprice) {
+                console.log('getting hotel price for '+destination.city);
+                console.log(hotelprice);
+                
+                scope.fullTrips.push({
+                    city: destination.city,
+                    country: destination.country,
+                    price: destination.minPrice,
+                    updating: "updating",
+                    flights: [
+                        {
+                            "destinationLocation": destination.destinationLocation,
+                            "originLocation": destination.originLocations[0],
+    //                        "airline": "",
+                            "price": "",
+                            "indate": "",
+                            "induration": "",
+                            "outdate": "",  
+                            "outduration": "",
+                            "booking_link": ""
+                        },
+                        {
+                            "destinationLocation": destination.destinationLocation,
+                            "originLocation": destination.originLocations[1],
+    //                        "airline": "",
+                            "price": "",
+                            "indate": "",
+                            "induration": "",
+                            "outdate": "",  
+                            "outduration": "",
+                            "booking_link": ""
+                        }
 
-                ],
-                hotel: 
-                    {
-                        "avgPrice": ""
-                    }
+                    ],
+                    hotel: 
+                        {
+                            "avgPrice": hotelprice
+                        }
+                });                
             });
+            
+
         });
     }
     
@@ -224,6 +233,28 @@
         )
             .success(function(flightsList) {
                 deferred.resolve(flightsList);
+            })
+            .error(function() {
+                deferred.reject();
+            });
+
+        return deferred.promise;
+    }
+    
+    function getHotelResults(http, q, scope, city) {
+        var deferred = q.defer();
+
+        http
+            .post(
+                'https://floating-harbor-60669.herokuapp.com/hotelsAvarage', 
+                {
+                    "location": city,
+                    "startDate": scope.startDate,
+                    "endDate": scope.endDate
+                }
+            )
+            .success(function(hotelprice) {
+                deferred.resolve(hotelprice);
             })
             .error(function() {
                 deferred.reject();

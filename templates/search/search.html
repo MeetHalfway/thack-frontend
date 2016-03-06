@@ -40,7 +40,7 @@
 			</div>
 		</div>
 		<div class="col-xs-12">
-			<button type="submit" class="btn btn-default btn-lg btn-primary-inverted btn-fullwidth">Redo Search</button>
+			<button type="submit" ng-click="redoSearch(  )" class="btn btn-default btn-lg btn-primary-inverted btn-fullwidth">Redo Search</button>
 		</div>
 	</form>
 </div>
@@ -153,10 +153,11 @@
 					<div class="col-xs-8">
 						<h4>43 Hours Together</h4>
 					</div>
-					<div class="col-xs-4">
-						<a ng-click="selectTrip(trip)" class="btn btn-default btn-lg btn-primary btn-less-padding">
+					<div class="col-xs-4" >
+                        <img ng-if="ready == false" src="images/477.gif" class="spinner" />
+						<button ng-show="ready" ng-click="selectTrip(trip)" class="btn btn-default btn-lg btn-primary btn-less-padding" >
 							Choose
-						</a>
+						</button>
 					</div>
 				</div>
 			</div>	

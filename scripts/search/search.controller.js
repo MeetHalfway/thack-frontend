@@ -48,6 +48,7 @@
         $scope.appURL = "http://localhost:8000/#/searched/";
         $scope.startDate;
         $scope.endDate;
+        $scope.ready = false;
         
         $scope.fullTrips = [];
         
@@ -59,6 +60,9 @@
 
         if($rootScope.trips)
             $scope.trips = $rootScope.trips;
+        
+        if($rootScope.fullTrips)
+            $scope.fullTrips = $rootScope.fullTrips;
 
         var d = new Date();
         var n = d.getDay();
@@ -87,6 +91,7 @@
         $scope.startDate = moment(startDate).format("YYYY-MM-DD");
         $scope.endDate = moment(endDate).format("YYYY-MM-DD");
         
+//        $scope.redoSearch;
         getSearchResults($http, $q, $scope, $scope.startDate, $scope.endDate, $scope.friend)
             .then(function(flights) {
 
@@ -100,6 +105,8 @@
                 getDetailedResults($http, $q, $scope).then(function(detailedflights) {
                     console.log('got some details');
                     updateTripDetails($scope, detailedflights);
+                    $rootScope.fullTrips = $scope.fullTrips;
+//                    $scope.buttonActive = "";
                 });
             });
 
@@ -107,7 +114,31 @@
         $scope.selectTrip = function(trip) {
             $state.go('booking.flights', { 'trip' : JSON.stringify(trip) });
         }
+        
+        $scope.redoSearch = function() {
+            console.log('redo');
+            $scope.fullTrips = [];
+
+            getSearchResults($http, $q, $scope, $scope.startDate, $scope.endDate, $scope.friend)
+                .then(function(flights) {
+
+                    $rootScope.trips = $scope.trips = flights;
+                    $scope.searchID = flights.searchId;
+
+                    $scope.searchURL = $scope.appURL + flights.searchId;
+                    mapTrips($scope);
+                    //now request the details
+                    console.log("getting more details");
+                    getDetailedResults($http, $q, $scope).then(function(detailedflights) {
+                        console.log('got some details');
+                        updateTripDetails($scope, detailedflights);
+                        $rootScope.fullTrips = $scope.fullTrips;
+                    });
+                });
+        }
     }
+    
+    
     
     function mapTrips(scope) {
         scope.trips.destinations.forEach(function(destination) {
@@ -123,8 +154,10 @@
                         "originLocation": destination.originLocations[0],
 //                        "airline": "",
                         "price": "",
-                        "arrival": "",
-                        "departure": "",                        
+                        "indate": "",
+                        "induration": "",
+                        "outdate": "",  
+                        "outduration": "",
                         "booking_link": ""
                     },
                     {
@@ -132,8 +165,10 @@
                         "originLocation": destination.originLocations[1],
 //                        "airline": "",
                         "price": "",
-                        "arrival": "",
-                        "departure": "",
+                        "indate": "",
+                        "induration": "",
+                        "outdate": "",  
+                        "outduration": "",
                         "booking_link": ""
                     }
 
@@ -152,16 +187,22 @@
             if (detailedflights[i] != undefined) {
                 trip.updating = 'done';
                 
-                trip.flights[0].price = detailedflights[i][0].price;
-                trip.flights[0].arrival = detailedflights[i][0].outbound.departureTime;
-                trip.flights[0].departure = detailedflights[i][0].inbound.departureTime;
-                trip.flights[0].booking_link = detailedflights[i][0].bookingLink;
-//                trip.flights[0].booking_link = detailedflights[i][0].
+                trip.flights[0].price =         detailedflights[i][0].price;
+                trip.flights[0].indate =        detailedflights[i][0].outbound.departureTime;
+                trip.flights[0].induration =    detailedflights[i][0].outbound.duration;
+                trip.flights[0].outdate =       detailedflights[i][0].inbound.departureTime;
+                trip.flights[0].outduration =   detailedflights[i][0].inbound.duration;
+                trip.flights[0].booking_link =  detailedflights[i][0].bookingLink;
                 
-                trip.flights[1].price = detailedflights[i][1].price;
-                trip.flights[1].arrival = detailedflights[i][1].outbound.departureTime;
-                trip.flights[1].departure = detailedflights[i][1].inbound.departureTime;
-                trip.flights[1].booking_link = detailedflights[i][1].bookingLink;
+//                console.log(detailedflights[i][0].bookingLink);
+//                console.log(detailedflights[i][1].bookingLink);
+                
+                trip.flights[1].price =         detailedflights[i][1].price;
+                trip.flights[1].indate =        detailedflights[i][1].outbound.departureTime;
+                trip.flights[1].induration =    detailedflights[i][1].outbound.duration;
+                trip.flights[1].outdate =       detailedflights[i][1].inbound.departureTime;
+                trip.flights[1].outduration =   detailedflights[i][1].inbound.duration;
+                trip.flights[1].booking_link =  detailedflights[i][1].bookingLink;
                 
                 trip.price = trip.flights[0].price + trip.flights[1].price;
                 i++;
@@ -193,11 +234,12 @@
     
     function getDetailedResults(http, q, scope) {
         var deferred = q.defer();
-
+        scope.ready = false;
         http
             .get('https://floating-harbor-60669.herokuapp.com/search/details/'+scope.searchID)
             .success(function(detailList) {
                 deferred.resolve(detailList);
+                scope.ready = true;
             })
             .error(function() {
                 deferred.reject();

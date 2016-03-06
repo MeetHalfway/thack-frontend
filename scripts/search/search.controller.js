@@ -41,7 +41,7 @@
         .module('app.search')
         .controller('searchCtrl', searchCtrl);
 
-    function searchCtrl($scope, $stateParams, $http, $q) {
+    function searchCtrl($scope, $state, $stateParams, $http, $q) {
         console.log('searchCTRL exec');
         
         $scope.serverURL = "https://floating-harbor-60669.herokuapp.com/";
@@ -95,6 +95,10 @@
                 });
             });
 
+
+        $scope.selectTrip = function(trip) {
+            $state.go('booking.flights', { 'trip' : JSON.stringify(trip) });
+        }
     }
     
     function mapTrips(scope) {

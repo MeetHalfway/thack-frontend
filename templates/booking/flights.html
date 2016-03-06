@@ -12,29 +12,29 @@
 					<ul class="item-list overview-item-list">
 						<li class="airport">
 							{{trip.flights[1].originLocation}}
-							<small>{{trip.flights[1].indate}}</small>
+							<small>{{ getDepartureTime(trip, true, 1) }}</small>
 						</li>
 						<li class="arrow"></li>
 						<li class="airport">
-							{{trip.flights[1].destinationLocation}}
-							<small>{{trip.flights[1].induration}} min</small>
+							{{ trip.flights[1].destinationLocation }}
+							<small>{{ getArrivalTime(trip, true, 1) }}</small>
 						</li>
 					</ul>
 					<ul class="item-list overview-item-list">
 						<li class="airport">
 							{{trip.flights[1].destinationLocation}}
-							<small>{{trip.flights[1].outdate}}</small>
+							<small>{{ getDepartureTime(trip, true, 1) }}</small>
 						</li>
 						<li class="arrow"></li>
 						<li class="airport">
 							{{trip.flights[1].originLocation}}
-							<small>{{trip.flights[1].outduration}} min</small>
+							<small>{{ getArrivalTime(trip, false, 1) }} min</small>
 						</li>
 					</ul>
 				</div>
 				<div class="col-xs-3 remove-padding-left">
 					<div class="price">
-						<h3>€ {{trip.flights[1].price}}</h3>
+						<h3>€ {{trip.flights[1].price | number : 0 }}</h3>
 						<a href="{{trip.flights[1].booking_link}}" class="btn btn-lg btn-default btn-primary" target="_blank">Book</a>
 					</div>
 				</div>
@@ -57,29 +57,29 @@
 					<ul class="item-list overview-item-list">
 						<li class="airport">
 							{{trip.flights[0].originLocation}}
-							<small>{{trip.flights[0].indate}}</small>
+							<small>{{ getDepartureTime(trip, true, 0) }}</small>
 						</li>
 						<li class="arrow"></li>
 						<li class="airport">
 							{{trip.flights[0].destinationLocation}}
-							<small>{{trip.flights[0].induration}} min</small>
+							<small>{{ getArrivalTime(trip, true, 0) }}</small>
 						</li>
 					</ul>
 					<ul class="item-list overview-item-list">
 						<li class="airport">
 							{{trip.flights[0].destinationLocation}}
-							<small>{{trip.flights[1].outdate}}</small>
+							<small>{{ getDepartureTime(trip, false, 0) }}</small>
 						</li>
 						<li class="arrow"></li>
 						<li class="airport">
 							{{trip.flights[0].originLocation}}
-							<small>{{trip.flights[0].outduration}} min</small>
+							<small>{{ getArrivalTime(trip, false, 0) }} min</small>
 						</li>
 					</ul>
 				</div>
 				<div class="col-xs-3 remove-padding-left">
 					<div class="price">
-						<h3>€ {{trip.flights[0].price}}</h3>
+						<h3>€ {{trip.flights[0].price | number : 0}}</h3>
 						<a href="{{trip.flights[0].booking_link}}" class="btn btn-lg btn-default btn-primary" target="_blank">Book</a>
 					</div>
 				</div>

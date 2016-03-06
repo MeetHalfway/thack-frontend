@@ -474,7 +474,7 @@ header
         padding-bottom: 0
         margin-top: 0
     h4
-        color: darken($color-darkest, 10)
+        color: darken($color-dark-gray, 10)
     a
         text-align: right
         font-weight: 500
@@ -486,7 +486,8 @@ header
     display: block
     clear: both
     padding: 5px 15px 10px 15px
-    border-bottom: 1px solid $color-light-gray
+    border-bottom: 1px solid darken($color-gray, 5)
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1)
     margin-bottom: 0px
     min-height: 37px
     li
@@ -521,7 +522,7 @@ header
     padding: 3px 0px
 
 .stripe
-    border: 1px solid $color-dark-gray
+    border: 1px solid darken($color-gray, 10)
     border-left: none
     border-right: none
     background: $color-lightest
@@ -540,7 +541,9 @@ header
     .airport
         font-size: 16px
     .arrow
+        height: 30px
         background-size: 16px auto
+        background-position: center top
 
 .pre-stripe
     padding-left: 15px
@@ -553,3 +556,32 @@ header
     border-top: 1px solid $color-light-gray
     margin-top: 5px
     color: $color-dark-gray
+
+.hotelstripe
+    padding: 0px 15px
+    position: relative
+    margin-bottom: 0px
+    box-shadow: none
+    .rental-pic
+        overflow: hidden
+        min-height: 120px
+        position: relative
+        img
+            position: absolute
+            height: 100%
+            width: auto
+            top: 0
+            left: 0
+    .rental-item-list
+        margin-top: 10px
+    .price
+        margin-top: 10px
+    i.star
+        display: inline-block
+        height: 20px
+        width: 20px
+        margin-right: 4px
+        color: $color-secondary
+    .rating
+        color: $color-secondary
+        margin-top: 25px

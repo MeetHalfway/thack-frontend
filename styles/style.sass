@@ -226,6 +226,11 @@ header
     margin-bottom: 10px
     font-weight: 400
     color: $color-dark-gray
+    padding-left: 85px
+    background: url(/images/icons/icons-message.png)no-repeat
+    background-size: 70px auto
+    background-position: left center
+    line-height: 1.2
 
 .trip-card
     padding: 0px 10px
@@ -305,7 +310,7 @@ header
 .graph
     ul
         li:nth-child(even)
-            background: rgba($color-darkest, 0.02)
+            background: rgba($color-darkest, 0.01)
     .date-info
         padding: 0px 15px 0px 15px
         display: table
@@ -379,3 +384,33 @@ header
         bottom: 10px
         background: $color-dark-gray
         display: block
+
+.cta-row
+    padding-top: 10px
+    padding-bottom: 10px
+    h4
+        padding-top: 5px
+    a
+        width: 100%
+
+.main-details
+    position: relative
+    overflow: hidden
+    .dropdown-card
+        position: absolute
+        right: 0
+        top: 0
+        height: 100%
+        display: block
+        padding: 0
+        width: 15%
+        border: none
+        outline: none
+        border-left: 1px solid $color-light-gray
+        background: url(/images/icons/dropdown.png)no-repeat
+        background-position: left 40% center
+        background-size: 20px
+        cursor: pointer
+        &:hover,
+        &:focus
+            background-color: $color-light-gray
